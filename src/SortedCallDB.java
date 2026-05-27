@@ -21,12 +21,7 @@ public class SortedCallDB {
         }
     }
 
-    public List<Call> searchCalls(String source_number){
-
-
-
-    }
-
+    //public List<Call> searchCalls(String source_number){}
 
 
 }
