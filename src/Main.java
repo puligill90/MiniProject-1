@@ -38,7 +38,7 @@ public class Main {
         System.out.println("Pick the main data structure to use (UnsortedCallDB or SortedCallDB (You need to type 1 or 2)): ");
         String the_main_structure = in.nextLine();
         while (!the_main_structure.equals("1") && !the_main_structure.equals("2") ){
-            System.out.println("Wrong number of a structure was picked!!!");
+            System.out.println("Wrong number of a structure was picked");
             System.out.println("Pick the main data structure to use (UnsortedCallDB or SortedCallDB (You need to type 1 or 2)): ");
             the_main_structure = in.nextLine();
         }
@@ -46,7 +46,7 @@ public class Main {
         System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
         String type_of_list = in.nextLine();
         while (!type_of_list.equals("1") && !type_of_list.equals("2") ) {
-            System.out.println("Wrong number of a type was picked!!!");
+            System.out.println("Wrong number of a type was picked");
             System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
             type_of_list = in.nextLine();
         }
@@ -77,7 +77,7 @@ public class Main {
                     switch_loop = true;
 
                 } catch (FileNotFoundException e) {
-                    System.out.println("File does not exist!!!");
+                    System.out.println("File does not exist");
                     System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
                     In_file_name = in.nextLine();
 
@@ -91,7 +91,7 @@ public class Main {
 
             while (!num.equals("2")){
                 while (!num.equals("1") && !num.equals("2")){
-                    System.out.println("Your choice does not exist!!");
+                    System.out.println("Your choice does not exist");
                     System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
                     num = in.nextLine();
                 }
