@@ -2,11 +2,9 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-// Some of the buggs have been fixed!!! 
-
 public class Main {
     public static void readFile(String filename,
-                                UnsortedCallDB db)
+                                UnsortedCallDB db )
             throws FileNotFoundException {
 
         Scanner in = new Scanner(new File(filename));
@@ -30,17 +28,9 @@ public class Main {
 
         in.close();
     }
-    
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
-        System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
-        String type_of_list = in.nextLine();
-        while (!type_of_list.equals("1") && !type_of_list.equals("2") ) {
-            System.out.println("Wrong number of a type was picked!!!");
-            System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
-            type_of_list = in.nextLine();
-        }
 
         System.out.println("Pick the main data structure to use (UnsortedCallDB or SortedCallDB (You need to type 1 or 2)): ");
         String the_main_structure = in.nextLine();
@@ -50,83 +40,56 @@ public class Main {
             the_main_structure = in.nextLine();
         }
 
+        System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
+        String type_of_list = in.nextLine();
+        while (!type_of_list.equals("1") && !type_of_list.equals("2") ) {
+            System.out.println("Wrong number of a type was picked!!!");
+            System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
+            type_of_list = in.nextLine();
+        }
+
+
         System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
         String In_file_name = in.nextLine();
 
 
 
-        if (type_of_list.equals("1")){
-            if(the_main_structure.equals("1")){
+        if (the_main_structure.equals("1")) {
+            UnsortedCallDB unsorted;
+            if (type_of_list.equals("1")) {
 
-                UnsortedCallDB unsorted = new UnsortedCallDB(true);
-                long start = System.nanoTime();
-                boolean switch_loop = false;
-                while (!switch_loop) {
-                    try {
-                        readFile(In_file_name, unsorted);
-                        switch_loop = true;
-
-                    } catch (FileNotFoundException e) {
-                        System.out.println("File does not exist!!!");
-                        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
-                        In_file_name = in.nextLine();
-
-                    }
-                }
-
-                long finish = System.nanoTime();
-                double elapsed_time = (finish - start) / 1_000_000_000.0;
-                System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
-                System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
-                String num = in.nextLine();
-                while (!num.equals("2")){
-                    System.out.println("What is a phone number you want to find?: ");
-                    String number = in.nextLine();
-                    System.out.println(unsorted.search_calls(number));
-                    System.out.println("What do you want to do next ((1) List all calls from number or (2) exit)? : ");
-                    num = in.nextLine();
-
-                }
-
-            }else {
-                SortedCallDB sorted = new SortedCallDB(true);
-
+                unsorted = new UnsortedCallDB(true);
+            } else {
+                 unsorted = new UnsortedCallDB(false);
             }
-        }else {
-            if (the_main_structure.equals("1")) {
-                UnsortedCallDB unsorted = new UnsortedCallDB(false);
-                long start = System.nanoTime();
-                boolean switch_loop = false;
-                while (!switch_loop) {
-                    try {
-                        readFile(In_file_name, unsorted);
-                        switch_loop = true;
+            long start = System.nanoTime();
+            boolean switch_loop = false;
+            while (!switch_loop) {
+                try {
+                    readFile(In_file_name, unsorted);
+                    switch_loop = true;
 
-                    } catch (FileNotFoundException e) {
-                        System.out.println("File does not exist!!!");
-                        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
-                        In_file_name = in.nextLine();
-
-                    }
-                }
-                long finish = System.nanoTime();
-                double elapsed_time = (finish - start) / 1_000_000_000.0;
-                System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
-                System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
-                String num = in.nextLine();
-                while (!num.equals("2")){
-                    System.out.println("What is a phone number you want to find?: ");
-                    String number = in.nextLine();
-                    System.out.println(unsorted.search_calls(number));
-                    System.out.println("What do you want to do next ((1) List all calls from number or (2) exit)? : ");
-                    num = in.nextLine();
+                } catch (FileNotFoundException e) {
+                    System.out.println("File does not exist!!!");
+                    System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
+                    In_file_name = in.nextLine();
 
                 }
-            }else {
-                SortedCallDB sorted = new SortedCallDB(false);
             }
+
+            long finish = System.nanoTime();
+            double elapsed_time = (finish - start) / 1_000_000_000.0;
+            System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
+            System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
+            String num = in.nextLine();
+            while (!num.equals("2")){
+                System.out.println("What is a phone number you want to find?: ");
+                String number = in.nextLine();
+                System.out.println(unsorted.search_calls(number));
+                System.out.println("What do you want to do next ((1) List all calls from number or (2) exit)? : ");
+                num = in.nextLine();
 
             }
         }
-
     }
+}
