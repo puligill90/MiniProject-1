@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+// Some of the buggs have been fixed!!! 
+
 public class Main {
     public static void readFile(String filename,
                                 UnsortedCallDB db)
@@ -28,12 +30,26 @@ public class Main {
 
         in.close();
     }
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println(" Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
+
+        System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
         String type_of_list = in.nextLine();
+        while (!type_of_list.equals("1") && !type_of_list.equals("2") ) {
+            System.out.println("Wrong number of a type was picked!!!");
+            System.out.println("Pick the type of list to use (ArrayList or LinkedList (You need to type 1 or 2)): ");
+            type_of_list = in.nextLine();
+        }
+
         System.out.println("Pick the main data structure to use (UnsortedCallDB or SortedCallDB (You need to type 1 or 2)): ");
         String the_main_structure = in.nextLine();
+        while (!the_main_structure.equals("1") && !the_main_structure.equals("2") ){
+            System.out.println("Wrong number of a structure was picked!!!");
+            System.out.println("Pick the main data structure to use (UnsortedCallDB or SortedCallDB (You need to type 1 or 2)): ");
+            the_main_structure = in.nextLine();
+        }
+
         System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
         String In_file_name = in.nextLine();
 
@@ -41,13 +57,23 @@ public class Main {
 
         if (type_of_list.equals("1")){
             if(the_main_structure.equals("1")){
+
                 UnsortedCallDB unsorted = new UnsortedCallDB(true);
                 long start = System.nanoTime();
-                try {
-                    readFile(In_file_name, unsorted);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+                boolean switch_loop = false;
+                while (!switch_loop) {
+                    try {
+                        readFile(In_file_name, unsorted);
+                        switch_loop = true;
+
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File does not exist!!!");
+                        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
+                        In_file_name = in.nextLine();
+
+                    }
                 }
+
                 long finish = System.nanoTime();
                 double elapsed_time = (finish - start) / 1_000_000_000.0;
                 System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
@@ -70,10 +96,18 @@ public class Main {
             if (the_main_structure.equals("1")) {
                 UnsortedCallDB unsorted = new UnsortedCallDB(false);
                 long start = System.nanoTime();
-                try {
-                    readFile(In_file_name, unsorted);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+                boolean switch_loop = false;
+                while (!switch_loop) {
+                    try {
+                        readFile(In_file_name, unsorted);
+                        switch_loop = true;
+
+                    } catch (FileNotFoundException e) {
+                        System.out.println("File does not exist!!!");
+                        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
+                        In_file_name = in.nextLine();
+
+                    }
                 }
                 long finish = System.nanoTime();
                 double elapsed_time = (finish - start) / 1_000_000_000.0;
@@ -94,4 +128,5 @@ public class Main {
 
             }
         }
+
     }
