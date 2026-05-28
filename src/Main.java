@@ -1,3 +1,6 @@
+package Mini_project_1;
+
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,11 +65,15 @@ public class Main {
             } else {
                  unsorted = new UnsortedCallDB(false);
             }
-            long start = System.nanoTime();
+
             boolean switch_loop = false;
             while (!switch_loop) {
                 try {
+                    long start = System.nanoTime();
                     readFile(In_file_name, unsorted);
+                    long finish = System.nanoTime();
+                    double elapsed_time = (finish - start) / 1_000_000_000.0;
+                    System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
                     switch_loop = true;
 
                 } catch (FileNotFoundException e) {
@@ -77,11 +84,11 @@ public class Main {
                 }
             }
 
-            long finish = System.nanoTime();
-            double elapsed_time = (finish - start) / 1_000_000_000.0;
-            System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
+
+
             System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
             String num = in.nextLine();
+
             while (!num.equals("2")){
                 System.out.println("What is a phone number you want to find?: ");
                 String number = in.nextLine();
@@ -90,6 +97,6 @@ public class Main {
                 num = in.nextLine();
 
             }
-        }
+        
     }
 }
