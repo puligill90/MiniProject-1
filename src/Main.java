@@ -90,6 +90,11 @@ public class Main {
             String num = in.nextLine();
 
             while (!num.equals("2")){
+                while (!num.equals("1")){
+                    System.out.println("Your choice does not exist!!");
+                    System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
+                    num = in.nextLine();
+                }
                 System.out.println("What is a phone number you want to find?: ");
                 String number = in.nextLine();
                 System.out.println(unsorted.search_calls(number));
