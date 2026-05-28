@@ -1,5 +1,5 @@
 package Mini_project_1;
-
+// Some buggs have been fixed!!! 
 
 import java.util.Scanner;
 import java.io.File;
