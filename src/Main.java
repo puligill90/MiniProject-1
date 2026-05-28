@@ -1,5 +1,6 @@
 
-// Some buggs have been fixed!!! 
+// Some buggs have been fixed!!!
+//I think, for SprtedCallDB you can use the same structure 
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
