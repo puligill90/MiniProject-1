@@ -67,7 +67,7 @@ public class Main {
 
             }
         }else {
-            if (the_main_structure.equals("2")) {
+            if (the_main_structure.equals("1")) {
                 UnsortedCallDB unsorted = new UnsortedCallDB(false);
                 long start = System.nanoTime();
                 try {
