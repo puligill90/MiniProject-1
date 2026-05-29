@@ -125,6 +125,7 @@ public class Main {
 
                 }
             }
+            //This part is collectind data mode
         }else {
             double[] time = new double[5];
             double the_whole_time = 0;
