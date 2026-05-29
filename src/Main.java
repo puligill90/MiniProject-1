@@ -184,9 +184,9 @@ public class Main2 {
 
 
         if (count_0f_errors <= 5) {
-            System.out.println("The number of errors are not exceed the limit, good job! ");
+            System.out.println("The number of errors does not exceed the limit, good job! ");
         } else if (count_0f_errors <= 10) {
-            System.out.println("The number of errors are exceed the limit, be more mindful!");
+            System.out.println("The number of errors exceeds the limit, be more mindful!");
         } else {
             System.out.println("So many errors have been made, you need to talk with supervisor! ");
         }
