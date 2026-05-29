@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Main {
+public class Main2 {
 
     public static void readFile(String filename,
                                 UnsortedCallDB db)
@@ -125,9 +125,9 @@ public class Main {
 
                 }
             }
-            //This part is collectind data mode
+            //This part is collecting data mode
         }else {
-            double[] time = new double[5];
+            double[] times = new double[5];
             double the_whole_time = 0;
             int size = 0;
             for (int i = 0; i<5; i++){
@@ -149,7 +149,7 @@ public class Main {
                             double elapsed_time = (finish - start) / 1_000_000_000.0;
                             switch_loop = true;
                             size = unsorted.size();
-                            time[i] = elapsed_time;
+                            times[i] = elapsed_time;
                             the_whole_time += elapsed_time;
 
 
@@ -165,13 +165,13 @@ public class Main {
                 }
 
             }
-            Arrays.sort(time);
+            Arrays.sort(times);
             if(the_main_structure.equals("1")){
                 if(type_of_list.equals("1")){
-                    System.out.println("Index: UnsortedCallDB"+", "+"List: ArrayList"+", "+"Size: "+size+", "+"Min: "+time[0]+", "+"Max: "+time[4]+", "+"Mean: "+the_whole_time/time.length+", "+"Median: "+time[2]);
+                    System.out.println("Index: UnsortedCallDB"+", "+"List: ArrayList"+", "+"Size: "+size+", "+"Min: "+ times[0]+", "+"Max: "+ times[4]+", "+"Mean: "+the_whole_time/ times.length+", "+"Median: "+ times[2]);
 
                 }else {
-                    System.out.println("Index: UnsortedCallDB"+", "+"List: LinkedList"+", "+"Size: "+size+", "+"Min: "+time[0]+", "+"Max: "+time[4]+", "+"Mean: "+the_whole_time/time.length+", "+"Median: "+time[2]);
+                    System.out.println("Index: UnsortedCallDB"+", "+"List: LinkedList"+", "+"Size: "+size+", "+"Min: "+ times[0]+", "+"Max: "+ times[4]+", "+"Mean: "+the_whole_time/ times.length+", "+"Median: "+ times[2]);
                 }
 
 
