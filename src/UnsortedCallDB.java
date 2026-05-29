@@ -4,8 +4,11 @@ import java.util.List;
 
 public class UnsortedCallDB {
     private List<Call> List_of_calls;
+    public boolean use_arrayList;
+
 
     public UnsortedCallDB(boolean use_arrayList){
+        this.use_arrayList = use_arrayList;
         if(use_arrayList){
             this.List_of_calls = new ArrayList<>();
         }else {
@@ -17,7 +20,15 @@ public class UnsortedCallDB {
         this.List_of_calls.add(x);
     }
     public List<Call> search_calls(String source_number){
-        List<Call> relevant_calls = new LinkedList<>();
+
+        List<Call> relevant_calls;
+
+        if (this.use_arrayList){
+            relevant_calls = new ArrayList<>();
+        }else {
+            relevant_calls = new LinkedList<>();
+        }
+
         for (Call c : this.List_of_calls){
             if(c.getSourceNumber().equals(source_number)){
                 relevant_calls.add(c);
