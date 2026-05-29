@@ -1,13 +1,12 @@
 
 // Some buggs have been fixed!!!
-// Data Collection does not finished 
 
-import java.util.Arrays;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Main2 {
+public class Main {
 
     public static void readFile(String filename,
                                 UnsortedCallDB db)
@@ -66,44 +65,38 @@ public class Main2 {
         String In_file_name = in.nextLine();
 
 
-        System.out.println("Choose a mode ( 1 - a single file or 2 - automated data collection )  ");
-        String mode = in.nextLine();
-        while (!mode.equals("1") && !mode.equals("2")) {
-            System.out.println("Wrong number of a mode was picked");
-            count_0f_errors++;
-            System.out.println("Choose a mode ( 1 - a single file or 2 - automated data collection )  ");
-            mode = in.nextLine();
-        }
+        if (the_main_structure.equals("1")) {
+            UnsortedCallDB unsorted;
+            if (type_of_list.equals("1")) {
 
-        if (mode.equals("1")) {
-            if (the_main_structure.equals("1")) {
-                UnsortedCallDB unsorted;
-                if (type_of_list.equals("1")) {
+                unsorted = new UnsortedCallDB(true);
+            } else {
+                unsorted = new UnsortedCallDB(false);
+            }
 
-                    unsorted = new UnsortedCallDB(true);
-                } else {
-                    unsorted = new UnsortedCallDB(false);
+            boolean switch_loop = false;
+            while (!switch_loop) {
+                try {
+                    long start = System.nanoTime();
+                    readFile(In_file_name, unsorted);
+                    long finish = System.nanoTime();
+                    double elapsed_time = (finish - start) / 1_000_000_000.0;
+                    System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
+                    switch_loop = true;
+
+                } catch (FileNotFoundException e) {
+                    System.out.println("File does not exist");
+                    count_0f_errors++;
+                    System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
+                    In_file_name = in.nextLine();
+
                 }
-
-                boolean switch_loop = false;
-                while (!switch_loop) {
-                    try {
-                        long start = System.nanoTime();
-                        readFile(In_file_name, unsorted);
-                        long finish = System.nanoTime();
-                        double elapsed_time = (finish - start) / 1_000_000_000.0;
-                        System.out.printf("The time to index whole file : %.5f \n", elapsed_time);
-                        switch_loop = true;
+            }
 
 
-                    } catch (FileNotFoundException e) {
-                        System.out.println("File does not exist");
-                        count_0f_errors++;
-                        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
-                        In_file_name = in.nextLine();
+                //System.out.println(collect_data.numbers);
+                //System.out.println(collect_data.numbers.size());
 
-                    }
-                }
 
                 System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
                 String num = in.nextLine();
@@ -125,71 +118,13 @@ public class Main2 {
 
                 }
             }
-            //This part is collecting data mode
-        }else {
-            double[] times = new double[5];
-            double the_whole_time = 0;
-            int size = 0;
-            for (int i = 0; i<5; i++){
-                if (the_main_structure.equals("1")) {
-                    UnsortedCallDB unsorted;
-                    if (type_of_list.equals("1")) {
-
-                        unsorted = new UnsortedCallDB(true);
-                    } else {
-                        unsorted = new UnsortedCallDB(false);
-                    }
-
-                    boolean switch_loop = false;
-                    while (!switch_loop) {
-                        try {
-                            long start = System.nanoTime();
-                            readFile(In_file_name, unsorted);
-                            long finish = System.nanoTime();
-                            double elapsed_time = (finish - start) / 1_000_000_000.0;
-                            switch_loop = true;
-                            size = unsorted.size();
-                            times[i] = elapsed_time;
-                            the_whole_time += elapsed_time;
-
-
-
-                        } catch (FileNotFoundException e) {
-                            System.out.println("File does not exist");
-                            count_0f_errors++;
-                            System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
-                            In_file_name = in.nextLine();
-
-                        }
-                    }
-                }
-
+            if (count_0f_errors <= 5) {
+                System.out.println("The number of errors are not exceed the limit, good job! ");
+            } else if (count_0f_errors <= 10) {
+                System.out.println("The number of errors are exceed the limit, be more mindful!");
+            } else {
+                System.out.println("So many errors have been made, you need to talk with supervisor! ");
             }
-            Arrays.sort(times);
-            if(the_main_structure.equals("1")){
-                if(type_of_list.equals("1")){
-                    System.out.println("Index: UnsortedCallDB"+", "+"List: ArrayList"+", "+"Size: "+size+", "+"Min: "+ times[0]+", "+"Max: "+ times[4]+", "+"Mean: "+the_whole_time/ times.length+", "+"Median: "+ times[2]);
-
-                }else {
-                    System.out.println("Index: UnsortedCallDB"+", "+"List: LinkedList"+", "+"Size: "+size+", "+"Min: "+ times[0]+", "+"Max: "+ times[4]+", "+"Mean: "+the_whole_time/ times.length+", "+"Median: "+ times[2]);
-                }
-
-
-
-            }
-
-
         }
 
-
-
-        if (count_0f_errors <= 5) {
-            System.out.println("The number of errors does not exceed the limit, good job! ");
-        } else if (count_0f_errors <= 10) {
-            System.out.println("The number of errors exceeds the limit, be more mindful!");
-        } else {
-            System.out.println("So many errors have been made, you need to talk with supervisor! ");
-        }
     }
-
-}
