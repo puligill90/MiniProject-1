@@ -1,6 +1,6 @@
 
 // Some buggs have been fixed!!!
-// Data Collecton does not finished 
+// Data Collection does not finished 
 
 import java.util.Arrays;
 import java.util.Scanner;
