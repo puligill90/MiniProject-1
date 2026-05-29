@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UnsortedCallDB {
     private List<Call> List_of_calls;
-    public boolean use_arrayList;
+    private boolean use_arrayList;
 
 
     public UnsortedCallDB(boolean use_arrayList){
@@ -15,6 +15,9 @@ public class UnsortedCallDB {
             this.List_of_calls = new LinkedList<>(); {
             }
         }
+    }
+    public int size(){
+        return this.List_of_calls.size();
     }
     public void index_call(Call x){
         this.List_of_calls.add(x);
