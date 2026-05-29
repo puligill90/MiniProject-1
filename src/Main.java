@@ -116,7 +116,7 @@ public class Main {
         }else if (count_0f_errors <= 10){
             System.out.println("The number of errors are exceed the limit, be more mindful!");
         }else {
-            System.out.println("So many errors have been made, you need to talk with supervisor! ");
+            System.out.println("So many errors have been made, you need to talk with supervisor!");
         }
     }
 }
