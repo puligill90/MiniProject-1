@@ -57,11 +57,6 @@ public class Main2 {
             type_of_list = in.nextLine();
         }
 
-
-        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
-        String In_file_name = in.nextLine();
-
-
         System.out.println("Choose a mode ( 1 - a single file or 2 - automated data collection )  ");
         String mode = in.nextLine();
         while (!mode.equals("1") && !mode.equals("2")) {
@@ -70,6 +65,13 @@ public class Main2 {
             System.out.println("Choose a mode ( 1 - a single file or 2 - automated data collection )  ");
             mode = in.nextLine();
         }
+
+
+        System.out.println("Specify the path to the text file containing the calls that will be loaded : ");
+        String In_file_name = in.nextLine();
+
+
+
 
         if (mode.equals("1")) {
             if (the_main_structure.equals("1")) {
