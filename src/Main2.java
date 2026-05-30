@@ -150,7 +150,7 @@ public class Main2 {
                             switch_loop = true;
                             size = unsorted.size();
                             times[i] = elapsed_time;
-                            the_whole_time += elapsed_time;
+                            the_whole_time += times[i];
 
 
 
