@@ -94,10 +94,7 @@ public class Main {
             }
 
 
-                //System.out.println(collect_data.numbers);
-                //System.out.println(collect_data.numbers.size());
-
-
+        
                 System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
                 String num = in.nextLine();
 
