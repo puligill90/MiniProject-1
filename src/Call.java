@@ -15,15 +15,8 @@ public class Call {
         this.duration = duration;
 
     }
-    public String toString(){
-        StringBuffer result = new StringBuffer();
-
-        result.append("Source: ").append(this.sourceNumber).append(" Target: ").append(this.targetNumber).append(" Date: ").
-        append(this.date).append(" Time: ").append(this.time).append(" Duration: ").append(this.duration).append("\n");
-
-
-        return result.toString();
-    }
+    
+    
 
     public String getSourceNumber(){
         return sourceNumber;
