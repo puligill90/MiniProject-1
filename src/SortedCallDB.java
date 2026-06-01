@@ -51,6 +51,19 @@ public class SortedCallDB {
     }
 
 
+    public int size(){
+        int total = 0;
+        for (int i = 0; i <phoneList.size(); i++){
+            total += phoneList.get(i).getCalls().size();
+
+        }
+        return total;
+    }
+
+    public int uniqueNumbers(){
+        return phoneList.size();
+    }
+
     public void index_call(Call x){
 
         String Ph = x.getSourceNumber();
