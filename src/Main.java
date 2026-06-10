@@ -133,11 +133,10 @@ public class Main {
 
                     }
                 }
-
+                System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
                 String num = in.nextLine();
 
                 while (!num.equals("2")) {
-                    System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
                     while (!num.equals("1") && !num.equals("2")) {
                         System.out.println("Your choice does not exist!!");
                         count_0f_errors++;
@@ -147,7 +146,12 @@ public class Main {
                     if (num.equals("1")) {
                         System.out.println("What is a phone number you want to find?: ");
                         String number = in.nextLine();
-                        System.out.println(unsorted.search_calls(number));
+                        long start = System.nanoTime();
+                        List<Call> results = unsorted.search_calls(number);
+                        long finish = System.nanoTime();
+                        double searchTime = (finish - start) / 1_000_000_000.0;
+                        System.out.println(results);
+                        System.out.printf("The time to search file : %.5f \n", searchTime);
                         System.out.println("What do you want to do next ((1) List all calls from number or (2) exit)? : ");
                         num = in.nextLine();
 
@@ -157,7 +161,7 @@ public class Main {
 
 
                 //SORTED SINGLE FILE
-            } else if (the_main_structure.equals("2")) {
+            } else {
                 SortedCallDB sorted;
                 if (type_of_list.equals("1")) {
                     sorted = new SortedCallDB(true);
@@ -173,7 +177,7 @@ public class Main {
                         long finish = System.nanoTime();
                         double elapsed_time = (finish - start) / 1_000_000_000.0;
                         System.out.println("Total calls added; " + sorted.size());
-                        System.out.println("Unique source numnbers; " + sorted.uniqueNumbers());
+                        System.out.println("Unique source numbers; " + sorted.uniqueNumbers());
                         switch_loop = true;
 
 
@@ -186,7 +190,8 @@ public class Main {
                     }
                 }
 
-                String num = "";
+                System.out.println("What do you want to do ((1) List all calls from number or (2) exit)? : ");
+                String num = in.nextLine();
                 while (!num.equals("2")) {
                     while (!num.equals("1") && !num.equals("2")) {
 
@@ -204,7 +209,7 @@ public class Main {
                         long finish = System.nanoTime();
                         double searchTime = (finish - start) / 1_000_000_000.0;
                         System.out.println(results);
-                        System.out.printf("The time to searc file : %.5f \n", searchTime);
+                        System.out.printf("The time to search file : %.5f \n", searchTime);
                         System.out.println("What do you want to do next? (1) List all calls from number or (2) exit?");
                         num = in.nextLine();
 
@@ -251,7 +256,8 @@ public class Main {
                 }
 
                 //SORTED AUTOMATED
-                else if (the_main_structure.equals("2")) {
+                else {
+
                     SortedCallDB sorted;
                     if (type_of_list.equals("1")) {
 
@@ -292,7 +298,7 @@ public class Main {
                     System.out.println("Index: UnsortedCallDB" + ", " + "List: LinkedList" + ", " + "Size: " + size + ", " + "Min: " + times[0] + ", " + "Max: " + times[4] + ", " + "Mean: " + the_whole_time / times.length + ", " + "Median: " + times[2]);
                 }
             }
-            else if(the_main_structure.equals("2")){
+            else {
                 if(type_of_list.equals("1")){
                     System.out.println("Index: SortedCallDB" + ", " + "List: ArrayList" + ", " + "Size: " + size + ", " + "Min: " + times[0] + ", " + "Max: " + times[4] + ", " + "Mean: " + the_whole_time / times.length + ", " + "Median: " + times[2]);
 
@@ -301,13 +307,13 @@ public class Main {
                 }
             }
             if (count_0f_errors <= 5) {
-                    System.out.println("The number of errors are not exceed the limit, good job! ");
-                } else if (count_0f_errors <= 10) {
-                    System.out.println("The number of errors are exceed the limit, be more mindful!");
-                } else {
-                    System.out.println("So many errors have been made, you need to talk with supervisor! ");
-                }
+                System.out.println("The number of errors are not exceed the limit, good job! ");
+            } else if (count_0f_errors <= 10) {
+                System.out.println("The number of errors are exceed the limit, be more mindful!");
+            } else {
+                System.out.println("So many errors have been made, you need to talk with supervisor! ");
             }
-
         }
+
     }
+}
